@@ -1,0 +1,2 @@
+# pixijs-example
+sprite + audio
