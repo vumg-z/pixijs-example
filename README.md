@@ -2,7 +2,7 @@
 sprite + audio
 
 ## Screen Shots
-![resources\ss.png]
+![](resources/ss.png)
 
 ### Instalación
 
