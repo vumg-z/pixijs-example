@@ -1,10 +1,17 @@
 
-window.addEventListener("resize", function() {
-    app.renderer.resize(window.innerWidth, window.innerHeight);
-  });
 
-const app = new PIXI.Application(window.innerWidth, window.innerHeight, {
+var sound = new Howl({
+  src: ['../resources/chill.mp3'],
+  autoplay: true,
+  loop: true
+});
+
+sound.play();
+
+const app = new PIXI.Application({
     
+    width: 375,
+    height: 812,
     transparent: true,
     resolution: window.devicePixelRatio || 1,
 
@@ -35,11 +42,6 @@ function setup() {
 
   app.stage.addChild(sprite);
 
-  //button
- const button = buttonSetup();
-
- app.stage.addChild(button);
-
   function gameLoop() {
     
     requestAnimationFrame(gameLoop);
@@ -54,78 +56,10 @@ function setup() {
             altura = .3;
         }
 
-        //centrando el monito
-        sprite.x = app.renderer.width / 2 - sprite.width / 2;
-
-        //button horizontal
-        button.x = app.renderer.width / 2 - button.width / 2;
-
-        //button vertical
-        button.y = app.renderer.height / 1 - sprite.height / 1;
-
     }
 
   //Start the loop
   gameLoop();
     
-}
-
-function buttonSetup() {
-  
-  //create some textures
-  const textureButton = PIXI.Texture.from('../resources/github1.png');
-  const textureButtonOver = PIXI.Texture.from('../resources/github2.png');
- 
-  const button = new PIXI.Sprite(textureButton);
-  button.buttonMode = true;
-  
-  // make the button interactive...
-  button.interactive = true;
-  button.buttonMode = true;
-
-  button
-    // Mouse & touch events are normalized into
-    // the pointer* events for handling different
-    // button events.
-        .on('pointerdown', onButtonDown)
-        .on('pointerup', onButtonUp)
-        .on('pointerupoutside', onButtonUp)
-        .on('pointerover', onButtonOver)
-        .on('pointerout', onButtonOut);
-
-  // add it to the stage
-  return button;
-
-  function onButtonDown() {
-    this.isdown = true;
-    this.texture = textureButtonDown;
-    this.alpha = 1;
-  }
-  
-  function onButtonUp() {
-    this.isdown = false;
-    if (this.isOver) {
-        this.texture = textureButtonOver;
-    } else {
-        this.texture = textureButton;
-    }
-  }
-  
-  function onButtonOver() {
-    this.isOver = true;
-    if (this.isdown) {
-        return;
-    }
-    this.texture = textureButtonOver;
-  }
-  
-  function onButtonOut() {
-    this.isOver = false;
-    if (this.isdown) {
-        return;
-    }
-    this.texture = textureButton;
-  }
-
 }
 
