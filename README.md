@@ -1,5 +1,5 @@
 # pixijs-example
-sprite + audio
+Esto es demasiado relajante..
 
 ## Screen Shots
 ![](resources/ss.png)
